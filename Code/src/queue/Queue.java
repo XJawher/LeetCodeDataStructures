@@ -37,20 +37,30 @@ class MyQueue {
      */
     private int indexData;
 
-    public MyQueue() {
-        data = new ArrayList<Integer>();
+    /**
+     * TODO 有一个疑问?为何 MyQueue 这个函数不需要 boolean 之类的修饰词？？？
+     * 目前掌握到的知识看，当一个方法和 class 同名且前面没有 void 的时候，他就是构造方法。
+     * 基本上为了区别，除了构造方法是大驼峰，其余的方法都是小驼峰
+     */
+    MyQueue() {
+        data = new ArrayList<>();
 
         // 都不知道赋值怎么搞，Java 还是很烦的，还是没掌握到诀窍，烦的一批
         indexData = 0;
+        this.myQueue();
+    }
+
+    private void myQueue() {
+        System.out.println(111);
     }
 
     /**
      * 有个疑问？ 为何 MyQueue 函数就不需要做函数前面变量的声明，而其他的函数却需要做这个变量的声明？？？
+     * 初步看应该是构造函数不需要，其他的函数是需要返回值的声明的，不知道泛型是不是也需要这个？
      */
     public boolean inQueen(int x) {
         data.add(x);
         System.out.print("这是 data 的数据：" + data + "\n");
-        System.out.print("这是 indexData 的数据：" + indexData + "\n");
         return true;
     }
 
@@ -62,10 +72,13 @@ class MyQueue {
         return true;
     }
 
-    public int getFrontData() {
-        return data.get(indexData);
+    public String getFrontData() {
+        System.out.print("这是 indexData 的数据：" + indexData + "\n");
+        if(this.isEmpty()) {
+            return String.valueOf(data);
+        }
+        return String.valueOf(data.get(indexData));
     }
-
     public boolean isEmpty() {
         return indexData >= data.size();
     }

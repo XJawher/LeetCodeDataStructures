@@ -12,5 +12,11 @@ public class Main {
         System.out.println("这是输入为 4，5 时候的队列首位的值：" + q.getFrontData() + "\n");
         q.inQueen(6);
         System.out.println("这是输入为 4，5，6 时候的队列首位的值：" + q.getFrontData() + "\n");
+        q.outQueen();
+        System.out.println("这是输入为 4，5，6 然后执行第一次出队的时候队列首位的值：" + q.getFrontData() + "\n");
+        q.outQueen();
+        System.out.println("这是输入为 4，5，6 然后执行第二次出队的时候队列首位的值：" + q.getFrontData() + "\n");
+        q.outQueen();
+        System.out.println("这是输入为 4，5，6 然后执行第三次出队的时候队列首位的值：" + q.getFrontData() + "\n");
     }
 }
