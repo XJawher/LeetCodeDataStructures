@@ -34,51 +34,51 @@ public class MyCircularQueue {
     public MyCircularQueue(int length) {
         data = new ArrayList<>(length);
         headIndex = 0;
-            tailIndex = 0;
-        }
+        tailIndex = 0;
+    }
 
-        /**
-         * 如果是空数组，那么就返回 -1，如果不是空的就返回正常值
-         *
-         * @return int
-         */
-        public int Front() {
-            if (isEmpty()) {
-                return -1;
-            }
-            return data.get(headIndex);
+    /**
+     * 如果是空数组，那么就返回 -1，如果不是空的就返回正常值
+     *
+     * @return int
+     */
+    public int Front() {
+        if (isEmpty()) {
+            return -1;
         }
+        return data.get(headIndex);
+    }
 
-        /**
-         * 给队列添加新的元素，添加成功返回 true
-         *
-         * @param value
-         * @return true
-         */
-        public boolean enQueue(int value) {
-            data.add(value);
-            headIndex++;
-            System.out.println(data + "  data.size() = " + data.size());
+    /**
+     * 给队列添加新的元素，添加成功返回 true
+     *
+     * @param value
+     * @return true
+     */
+    public boolean enQueue(int value) {
+        data.add(value);
+        headIndex++;
+        System.out.println(data + "  data.size() = " + data.size());
+        return true;
+    }
+
+    public boolean deQueue() {
+        if (!isEmpty()) {
+            data.remove(tailIndex);
+            System.out.println(data + "from deQueue ====>>>>  data.size() = " + data.size());
             return true;
         }
+        System.out.println(data + "from deQueue isEmpty? yes !!! data.size() = " + data.size());
+        return false;
+    }
 
-        public boolean deQueue() {
-            if (!isEmpty()) {
-                data.remove(tailIndex);
-                System.out.println(data + "from deQueue ====>>>>  data.size() = " + data.size());
-                return true;
-            }
-            System.out.println(data + "from deQueue isEmpty? yes !!! data.size() = " + data.size());
-            return false;
-        }
-
-        /**
-         * 获取队尾的元素
-         *
-         * @return int
-         */
-        public int Rear() {
-            if (isEmpty()) {
+    /**
+     * 获取队尾的元素
+     *
+     * @return int
+     */
+    public int Rear() {
+        if (isEmpty()) {
             return -1;
         }
         return data.get(tailIndex);
@@ -90,7 +90,7 @@ public class MyCircularQueue {
      * @return
      */
     public boolean isEmpty() {
-        return  data.isEmpty();
+        return data.isEmpty();
     }
 
     /**
