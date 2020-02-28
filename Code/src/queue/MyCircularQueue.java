@@ -27,6 +27,8 @@ public class MyCircularQueue {
     private int headIndex;
     // 尾部索引
     private int tailIndex;
+    // 尾部索引
+    private int defaultIndex;
 
     /**
      * 构造方法，设置队列的长度
@@ -34,7 +36,8 @@ public class MyCircularQueue {
     public MyCircularQueue(int length) {
         data = new ArrayList<>(length);
         headIndex = 0;
-        tailIndex = 0;
+        tailIndex = -1;
+        defaultIndex = length;
     }
 
     /**
@@ -56,19 +59,31 @@ public class MyCircularQueue {
      * @return true
      */
     public boolean enQueue(int value) {
+        if (isFull()) {
+            return false;
+        }
         data.add(value);
-        headIndex++;
-        System.out.println(data + "  data.size() = " + data.size());
+        tailIndex++;
         return true;
     }
 
     public boolean deQueue() {
         if (!isEmpty()) {
-            data.remove(tailIndex);
-            System.out.println(data + "from deQueue ====>>>>  data.size() = " + data.size());
+            if (headIndex + 1 == defaultIndex) {
+                data.remove(0);
+                headIndex = 0;
+                tailIndex = 0;
+            } else {
+                System.out.println(headIndex );
+                data.remove(headIndex);
+                headIndex++;
+                tailIndex--;
+            }
             return true;
+        }else  {
+            headIndex = 0;
+            tailIndex = 0;
         }
-        System.out.println(data + "from deQueue isEmpty? yes !!! data.size() = " + data.size());
         return false;
     }
 
@@ -81,7 +96,7 @@ public class MyCircularQueue {
         if (isEmpty()) {
             return -1;
         }
-        return data.get(tailIndex);
+        return data.get(tailIndex - 1);
     }
 
     /**
@@ -101,11 +116,6 @@ public class MyCircularQueue {
      * @return
      */
     public boolean isFull() {
-        if (!isEmpty()) {
-            return false;
-        } else {
-            return headIndex == data.size();
-        }
+        return defaultIndex == data.size() && data.size() != 0;
     }
-
 }
