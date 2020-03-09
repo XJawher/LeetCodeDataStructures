@@ -54,7 +54,8 @@ public class MyCircularQueue {
 
     /**
      * 给队列添加新的元素，添加成功返回 true
-     *
+     * 添加新元素的时候 head 是一直不变的，head 会发生变化的唯一行为是删除元素，这时候head 才会改变会 +1
+     * 当删除元素的时候，head +1 但是
      * @param value
      * @return true
      */
@@ -67,23 +68,12 @@ public class MyCircularQueue {
         return true;
     }
 
+    /**
+     * 删除的时候
+     * @return
+     */
     public boolean deQueue() {
-        if (!isEmpty()) {
-            if (headIndex + 1 == defaultIndex) {
-                data.remove(0);
-                headIndex = 0;
-                tailIndex = 0;
-            } else {
-                System.out.println(headIndex );
-                data.remove(headIndex);
-                headIndex++;
-                tailIndex--;
-            }
-            return true;
-        }else  {
-            headIndex = 0;
-            tailIndex = 0;
-        }
+
         return false;
     }
 
